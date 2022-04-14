@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+
+
+{% block main %}
+
+<div class="box">
+    <div style="background-color: #4723D9;" class="p-2 text-white fw-bold heading">
+        Data Upload
+    </div>
+    <div class="p-4">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="exampleInputEmail1" class="form-label">List Id</label>
+                    <input type="text" class="form-control" name="listid" required>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="exampleInputPassword1" class="form-label">List name</label>
+                    <input type="text" class="form-control" name="listname" required>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="exampleInputPassword1" class="form-label">Upload</label>
+                    <input type="file" class="form-control" name="listfile">
+                </div>
+                <div class="mb-3 col-12 d-flex justify-content-center">
+                    <button type="submit" class=" align-items-center btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-4">
+                <label for="">Choose Format</label>
+                <select onchange="hide()" name="" id="sel" class="form-select form-select-md">
+                    <option style="display: none;">--select option--</option>
+                    <option value="1">Excel Format</option>
+                </select>
+            </div>
+            <div class="col-3" style="justify-content: center;display: flex; align-items: end;">
+                {% for i in form1 %}
+                <a href="  {{i.dataformat.url}}" download id="link" style="display: none;" class="mx-2 align-items-center">Click here to download</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box mt-4">
+    <div style="background-color: #4723D9;" class="p-2 text-white fw-bold heading">
+        All Uploaded List
+    </div>
+    <div class="px-4">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">List Id</th>
+                    <th scope="col">List Name</th>
+                    <th scope="col">Date uploaded</th>
+                    <th scope="col">Files</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for i in read %}
+                    <td>{{i.id}}</td>
+                    <td>{{i.listid}}</td>
+                    <td>{{i.listname}}</td>
+                    <td>{{i.created}}</td>
+                    <td><a href="{{i.files.url}}" download>{{i.files}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function hide() {
+        let a = document.getElementById("sel")
+        console.log(a.value)
+        if (a = 1) {
+            document.getElementById('link').style.display = 'flex'
+        } else {
+            document.getElementById('link').style.display = 'none'
+        }
+    }
+</script>
+
+{% endblock main %}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}   
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>dashboard</title>
+
+
+</head>
+<body>
+  <!-- <div class="container">
+    <div class="navigation">
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon"></span>
+            <span class="title">Admin</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon  name="reader-outline"></ion-icon></span>
+            <span class="title">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+            <span class="title">Account</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+            <span class="title">Setting</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+            <span class="title">Sign Out</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="main">
+      <div class="topbar">
+        <div class="toggle">
+          <ion-icon name="menu-outline"></ion-icon>
+        </div>
+
+        <div class="search">
+          <label for="">
+            <input type="text" placeholder="Search here">
+            <ion-icon name="search-outline">
+          </label>
+        </div>
+      </div>
+
+      <div class="cardBox">
+        <div class="card">
+          <div>
+            <div class="numbers">1,504</div>
+            <div class="cardName">User</div>
+          </div>
+          <div class="iconBx">
+            <ion-icon name="people-circle-outline"></ion-icon>
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="numbers">142</div>
+            <div class="cardName">Total lead</div>
+          </div>
+          <div class="iconBx">
+            <ion-icon name="people-circle-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div>
+          <div class="numbers">41</div>
+          <div class="cardName">contacted</div>
+        </div>
+        <div class="iconBx">
+          <ion-icon name="people-circle-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="card">
+        <div>
+          <div class="numbers">23</div>
+          <div class="cardName">No-contact</div>
+        </div>
+        <div class="iconBx">
+          <ion-icon name="people-circle-outline"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div> -->
+<div class="container mt-5">
+  <h1 class="text-primary">Data submitted Successfully</h1>
+  <a class="btn btn-outline-success" href="{% url 'register' %}">Back</a>
+  <a class="btn btn-outline-danger" href="{% url 'logout' %}">Logout</a>
+</div>
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+  //Menu toggle
+  let toggle = document.querySelector('.toggle')
+  let navigation = document.querySelector('.navigation');
+  let main = document.querySelector('.main')
+
+  toggle.onclick = function(){
+    navigation.classList.toggle('active');
+    main.classList.toggle('active');
+  }
+
+
+  //add hoveredclass in seleted list item
+  let list = document.querySelectorAll('.navigation li');
+  function activeLink(){
+    list.forEach((item)=>
+    item.classList.remove('hovered'));
+    this.classList.add('hovered');
+  }
+  list.forEach((item)=>
+  item.addEventListener('mouseover',activeLink));
+</script>
+</body>
+</html>

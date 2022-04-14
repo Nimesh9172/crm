@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 25rem;">
+    <div class="box p-4">
+        <center><h4 style="color: rgb(3, 105, 125);">Login</h4></center>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="col-md-12 mb-2">
+                <label for="exampleInputEmail1" class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" id="">
+            </div>
+            <div class="col-md-12 mb-2">
+                <label for="exampleInputEmail1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="">
+            </div>
+            <p>Don't have account? <a href="{% url 'register' %}">SignUp</a></p>
+            <button type="submit" class="btn btn-outline-primary mt-2">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

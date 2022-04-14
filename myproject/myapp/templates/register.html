@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="max-width: 38rem;">
+    <div class="box p-4 mt-5">
+        <center><h4 style="color: rgb(3, 105, 125);">Register</h4></center>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="col-md-12 mb-2">
+                <label for="exampleInputEmail1" class="form-label">Username</label>
+                {{form.username}}
+              </div>
+              <div class="col-md-12 mb-2">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                {{form.email}}
+              </div>
+              <div class="col-md-12 mb-2">
+                <label for="exampleInputEmail1" class="form-label">Password</label>
+                {{form.password1}}
+              </div>
+              <div class="col-md-12 mb-2">
+                <label for="exampleInputEmail1" class="form-label">Confirm password</label>
+                {{form.password2}}
+              </div>
+              <div class="col-md-12 mb-2">
+                {{form.is_user}}
+                <label for="exampleInputEmail1" class="form-label">User</label>
+              </div>
+              <div class="col-md-12 mb-2">
+                {{form.is_admin}}
+                <label for="exampleInputEmail1" class="form-label">Admin</label>
+              </div>
+              <p>{{form.errors}}</p>
+              <p>Already have an account? <a href="{% url 'login' %}"> Signin</a></p>
+            <button type="submit" class="btn btn-outline-primary mt-2   ">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

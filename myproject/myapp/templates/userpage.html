@@ -1,0 +1,61 @@
+{% extends 'index1.html' %}
+
+{% block main %}
+
+<h1>userpage</h1>
+<div class="my-4 box table-responsive">
+    <div style="background-color: #47CBE6;"  class="p-2 pb-3 text-white fw-bold heading">
+        <span>Customers Data</span>
+
+        <div class="d-flex float-end">
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <select id="dis" onchange="this.form.submit()" name="fil" class="form-select-sm form-select" aria-label=".form-select example">
+                    <option value="">--select option--</option>          
+                    <option value="all">All</option>
+                    <option value="new">New</option>
+                    <option value="contact">Contact</option>
+                    <option value="no-contact">No-Contact</option>
+                </select>
+            </form>
+        </div>
+
+    </div>
+    <div class="px-2">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Contact no.</th>
+                    <th scope="col">Product-id</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Disposition</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Remarks</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in read %}
+                <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.name}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>{{i.productid}}</td>
+                    <td>{{i.price}}</td>
+                    <td>{{i.sub_disposition}}</td>
+                    <td>{{i.city}}</td>
+                    <td>{{i.remarks}}</td>
+                    <td>{{i.address}}</td>
+                    <td><a class="btn" id="edit" href="{% url 'update' i.id %}">Edit</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock main %}

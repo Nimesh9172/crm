@@ -1,0 +1,86 @@
+{% extends 'index1.html' %}
+
+{% block main %}
+
+<div class="container">
+  <form action="" method="post">
+    <p>{{request.session.userid}}</p>
+    {% csrf_token %}
+    <div class="my-4 box">
+      <a class="btn btn-outline-primary float-end m-2" href="{% url 'logout' %}">logout</a>
+      <h3 class="m-4 pt-4  m-2">Customer Form</h3>
+      <div class="row p-4 pt-1">
+        <div class="col-md-4">
+          <label for="exampleInputEmail1" class="form-label">Name</label>
+          {{form.name}}
+        </div>
+        <div class="col-md-4">
+          <label for="exampleInputEmail1" class="form-label">Address</label>
+          {{form.address}}
+        </div>
+        <div class="col-md-4">
+          <label for="exampleInputEmail1" class="form-label">Contact no.</label>
+          {{form.phone}}
+        </div>
+        <div class="col-md-4">
+          <label for="exampleInputEmail1" class="form-label">City</label>
+          {{form.city}}
+        </div>
+        <div class="col-md-4">
+          <label for="exampleInputEmail1" class="form-label">Product Id</label>
+          {{form.productid}}
+        </div>
+        <div class="col-md-4">
+          <label for="exampleInputEmail1" class="form-label">Price</label>
+          {{form.price}}
+        </div class="col-md-4">
+        <div>
+          
+          <input type="hidden" name="created_by"  value="{{request.session.userid}}" placeholder="{{request.session.id}}">
+        </div>
+      </div>
+      <div style="background-color: #47cbe6;border-radius:0px 0px 10px 10px;">
+        <center>Agent takeaway</center>
+      </div>
+    </div>
+    <div class="box">
+      <div class="row p-4">
+        <div class="col-4">
+          <label for="exampleInputEmail1" class="form-label">Disposition</label>
+          <select id="dis" name="disposition" class="form-select form-select-md" aria-label=".form-select-lg example">
+            <option  style="display: none;" value="none">--Select option--</option>
+            <option value="Contact">Contact</option>
+            <option value="No-contact">No-contact</option>
+          </select>
+          <button class="btn mt-3 btn-outline-success">Submit</button>
+        </div>
+        <div class="col-4">
+          <label for="exampleInputEmail1" class="form-label">Sub-Disposition</label>
+          <select name="sub_disposition" id="sub" class="form-select form-select-md" aria-label=".form-select-lg example">
+            <option style="display: none;" value="none">--Select option--</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label for="exampleInputEmail1" class="form-label">Remarks</label>
+            {{form.remarks}}
+        </div>
+      </div>  
+    </div>
+  </form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+ $(document).ready(function() {
+  $("#dis").change(function() {
+    var val = $(this).val();
+    if (val == "Contact") {
+        $("#sub").html("<option value='Interested'>Interested</option><option value='Call-back'>Call back</option><option value='Sale'>Sale</option>");
+    } else if (val == "No-contact") {
+        $("#sub").html("<option value='Busy'>Busy </option><option value='No-recall'>No-recall</option><option value='No-answer'>No-answer</option>");
+    }
+  });
+});
+</script>
+
+{% endblock main %}
